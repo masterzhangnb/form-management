@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.murui.applet.mapper.UserMapper">
+
+    <resultMap id="getOpenid" type="com.murui.applet.entity.User">
+        <id property="id" column="id"></id>
+        <result property="phone" column="phone"></result>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="role" column="role"></result>
+        <association property="openid"
+                    select="com.murui.applet.mapper.WxOpenidMapper.getOpenid"
+                    column="id"></association>
+
+    </resultMap>
+    <select id="getUserOpenid" resultMap="getOpenid">
+        select * from sys_user where id = #{id}
+    </select>
+
+</mapper>
